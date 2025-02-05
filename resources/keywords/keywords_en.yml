@@ -1,0 +1,31 @@
+en
+  category:
+    looking_for_members:
+      - 'members'
+      - 'new'
+    job_recruitment:
+      - 'job'
+      - 'recruiting'
+      - 'now hiring'
+    events:
+      - 'event'
+    for_sale_free:
+      - 'sale'
+      - 'buy'
+      - 'free'
+      - 'giveaway'
+    store_opening:
+      - 'opening'
+      - 'new store'
+      - 'now open'
+    new_menu_product:
+      - 'menu'
+      - 'seasonal'
+      - 'new'
+    seeking_advice:
+      - 'advice'
+      - 'answer'
+      - 'question'
+    please_share:
+      - 'share'
+      - 'follow'

@@ -1,0 +1,12 @@
+jp:
+  # system_prompt: "SNSのポストを分析し、内容にて以下のカテゴリで分けてください。"
+  system_prompt: 'あなたは、プロのコメディアンです。'
+  category_prompts:
+    looking_for_members: ''
+    job_recruitment: ''
+    events: ''
+    for_sale_free: ''
+    store_opening: ''
+    new_menu_product: ''
+    seeking_advice: ''
+    please_share: ''

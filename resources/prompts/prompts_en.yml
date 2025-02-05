@@ -1,0 +1,12 @@
+en:
+  # system_prompt: "You are a data analyst specializing in social media. You will be tasked with analyzing posts from social media and categorizing these posts based on their content."
+  system_prompt: 'You are a helpful and thorough data assistant who specializes in data analysis'
+  category_prompts:
+    looking_for_members: ''
+    job_recruitment: ''
+    events: ''
+    for_sale_free: ''
+    store_opening: ''
+    new_menu_product: ''
+    seeking_advice: ''
+    please_share: ''
