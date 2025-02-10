@@ -1,12 +1,53 @@
 jp:
-  # system_prompt: "SNSのポストを分析し、内容にて以下のカテゴリで分けてください。"
-  system_prompt: 'あなたは、プロのコメディアンです。'
-  category_prompts:
-    looking_for_members: ''
-    job_recruitment: ''
-    events: ''
-    for_sale_free: ''
-    store_opening: ''
-    new_menu_product: ''
-    seeking_advice: ''
-    please_share: ''
+  system_prompt: "SNSのポストを分析し、内容にて以下のカテゴリで分けてください。"
+
+  user_prompt: '以下のJSONデータとして保存されているSNSの投稿を分析し、これらのカテゴリ（「間メンバー募集」、「求人募集」、「イベントやります」、「売ります・あげます」、「お店はじめます・始めました」、「新メニュー・新商品」、「教えてください」、「拡散希望」）でどれが一番当てはまるかを投稿ごと説明し、予約を作ってください：　'
+
+  response_format:
+    format:
+      json: {"type": "json_object"}
+    prompt:
+      json: 'このレスポンスをインデックス付きのJSONオブジェクト形式でのみ提供してください。スキーマは次の通りです：{"id" : "integer", "cl_id" : "integer", "category" : "string", "reasoning" : "string"}。データ型（"integer", "string", "boolean", "array", "date"）を対応するレスポンスや情報に置換し、JSON以外の追加コメントや情報は含めず、JSON形式以外の改行（\nなど）やフォーマットも含めません。改行なしのJSONデータのみだけでお願いします。ありがとうございます！'
+
+  categories:
+    - '間メンバー募集'
+    - '求人募集'
+    - 'イベントやります'
+    - '売ります・あげます'
+    - 'お店はじめます・始めました'
+    - '新メニュー・新商品'
+    - '教えてください'
+    - '拡散希望'
+
+  keywords:
+    category_keywords:
+      looking_for_members:
+        - '仲間'
+        - 'メンバー'
+        - '募集'
+      job_recruitment:
+        - '募集'
+        - '求人'
+        - 'リクルート'
+      events:
+        - 'イベント'
+      for_sale_free:
+        - '売ります'
+        - 'あげます'
+        - 'セール'
+        - '無料'
+      store_opening:
+        - '始め'
+        - 'オープン'
+        - '店'
+      new_menu_product:
+        - 'メニュー'
+        - '商品'
+        - '新'
+      seeking_advice:
+        - '教えて'
+        - 'アドバイス'
+        - '答え'
+      please_share:
+        - '拡散'
+        - 'フォロー'

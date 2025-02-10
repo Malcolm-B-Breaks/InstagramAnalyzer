@@ -1,12 +1,53 @@
 en:
-  # system_prompt: "You are a data analyst specializing in social media. You will be tasked with analyzing posts from social media and categorizing these posts based on their content."
-  system_prompt: 'You are a helpful and thorough data assistant who specializes in data analysis'
-  category_prompts:
-    looking_for_members: ''
-    job_recruitment: ''
-    events: ''
-    for_sale_free: ''
-    store_opening: ''
-    new_menu_product: ''
-    seeking_advice: ''
-    please_share: ''
+  system_prompt: "You are a data analyst specializing in social media. You will be tasked with analyzing posts from social media and categorizing these posts based on their content."
+
+  user_prompt: 'Please analyze and present a summary of each of the following social media posts saved as JSON data, and classify each of them into one of these categories ("looking_for_members", "job recruitment", "events", "for sale/ free", "store opening", "new menu product", "seeking advice", "please share"): '
+
+  response_format:
+    format:
+      json: {"type": "json_object"}
+    prompt:
+      json: 'Please ONLY give your response in the form of an indexed JSON object with the schema {"id" : "integer", "cl_id" : "integer", "category" : "string", "reasoning" : "string"}, replacing the data types ("integer", "string", "bolean", "array", "date") with the corresponding responses and information, with no additional commentary or information outside of the JSON response and with no linebreaks or additional formatting outisde of the JSON format. Thank you!'
+
+
+  categories:
+    - 'looking_for_members'
+    - 'job recruitment'
+    - 'events'
+    - 'for sale/ free'
+    - 'store opening'
+    - 'new menu product'
+    - 'seeking advice'
+    - 'please share'
+
+  keywords:
+    category_keywords:
+      looking_for_members:
+        - 'members'
+        - 'new'
+      job_recruitment:
+        - 'job'
+        - 'recruiting'
+        - 'now hiring'
+      events:
+        - 'event'
+      for_sale_free:
+        - 'sale'
+        - 'buy'
+        - 'free'
+        - 'giveaway'
+      store_opening:
+        - 'opening'
+        - 'new store'
+        - 'now open'
+      new_menu_product:
+        - 'menu'
+        - 'seasonal'
+        - 'new'
+      seeking_advice:
+        - 'advice'
+        - 'answer'
+        - 'question'
+      please_share:
+        - 'share'
+        - 'follow'

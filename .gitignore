@@ -1,4 +1,5 @@
 .venv
+resources/prompts/*
 input_data/*
 output_data/*
 .env
