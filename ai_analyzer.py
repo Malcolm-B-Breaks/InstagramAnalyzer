@@ -1,16 +1,19 @@
-from openai import OpenAI
+from langchain_core.messages import SystemMessage, HumanMessage
 from dotenv import load_dotenv
+import regex as re
 import yaml
 import json
-import os
 
-load_dotenv()
+from categorizer import categorizer
 
-open_ai_api_key = os.getenv('OPENAI_API_KEY')
-cl = OpenAI()
-current_model = os.getenv('MODEL')
+def ai_analyzer(language, model):
+    if model == "axios":
+        from ai_models.axios_init import axios as agent
+    elif model == "veritas":
+        from ai_models.veritas_init import veritas as agent
+    elif model == "chatGPT4":
+        from ai_models.chatgpt_init import openAI, chatGPT4
 
-def ai_analyzer(language):
     lang = language
     yaml_config = f'./resources/prompts/prompts_{lang}.yml'
     with open(yaml_config, 'r', encoding='utf-8') as file:
@@ -23,28 +26,49 @@ def ai_analyzer(language):
 
         with open('./input_data/IGposts.json', 'r', encoding='utf-8') as json_file:
             data = json.load(json_file)
+            ai_message = {}
 
-            output = cl.chat.completions.create(
-                model = current_model,
-                response_format = response_format,
-                messages = [
-                    {
-                        "role": "system",
-                        "content": sysPrompt
-                    },
-                    {
-                        "role": "user",
-                        "content": f'{userPrompt}{category_keywords}{data}{response_format_prompt}'
-                    }
-                ],
-            )
+            for post in data['data']:
 
-    ai_message = output.choices[0].message.content
+                if model == "chatGPT4":
+                    output = openAI.chat.completions.create(
+                        model = chatGPT4,
+                        response_format = response_format,
+                        messages = [
+                            {
+                                "role": "system",
+                                "content": sysPrompt
+                            },
+                            {
+                                "role": "user",
+                                "content": f'{userPrompt}{category_keywords}{post}{response_format_prompt}'
+                            }
+                        ],
+                    )
+                    # ai_message.append(output.choices[0].message.content)
+                    ai_message = output.choices[0].message.content
 
-    with open(f"./output_data/categorized_posts/data_{lang}.json", "w", encoding='utf-8') as file:
-        json.dump(ai_message, file, ensure_ascii=False)
+                elif model == "axios" or model == "veritas":
+                    messages = [
+                        SystemMessage(
+                            content=sysPrompt
+                        ),
+                        HumanMessage(
+                            content=f'{userPrompt}{category_keywords}{post}{response_format_prompt}'
+                        )
+                    ]
 
-    return ai_message
+                    ai_message = agent.invoke(messages)
 
-print(ai_analyzer("en"))
-# print(ai_analyzer("jp"))
+
+                print(type(ai_message))
+                print(ai_message)
+
+                # re.match(r'^\s*"([^"]*)"\s*$', ai_message)
+                # re.sub(r'\"', '"', ai_message)
+
+                with open(f"./output_data/categorized_posts/data_{lang}.json", "a", encoding='utf-8') as file:
+                    json.dump(ai_message, file, ensure_ascii=False)
+                    # json.dump(ai_message, file)
+
+                # categorizer(ai_message, lang)

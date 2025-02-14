@@ -1,15 +1,14 @@
-from openai import OpenAI
-from dotenv import load_dotenv
-import yaml
-import json
-import os
-
 from ai_analyzer import ai_analyzer
+from categorizer import categorizer
 
-load_dotenv()
+lang = 'en'
+# lang = 'jp'
+model = "axios"
+# model = "veritas"
+# model = "chatGPT4"
 
-open_ai_api_key = os.getenv('OPENAI_API_KEY')
-cl = OpenAI()
-current_model = os.getenv('MODEL')
+def main():
+    ai_analyzer(lang, model)
 
-print(ai_analyzer())
+if __name__ == '__main__':
+    main()

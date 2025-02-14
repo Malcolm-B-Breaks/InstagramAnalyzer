@@ -7,7 +7,7 @@ en:
     format:
       json: {"type": "json_object"}
     prompt:
-      json: 'Please ONLY give your response in the form of an indexed JSON object with the schema {"id" : "integer", "cl_id" : "integer", "category" : "string", "reasoning" : "string"}, replacing the data types ("integer", "string", "bolean", "array", "date") with the corresponding responses and information, with no additional commentary or information outside of the JSON response and with no linebreaks or additional formatting outisde of the JSON format. Thank you!'
+      json: 'Please ONLY give your response in the form of an indexed JSON object with the schema { data: {"id" : "integer", "cl_id" : "integer", "category" : "string", "reasoning" : "string"}}, replacing the data types ("integer", "string", "bolean", "array", "date") with the corresponding responses and information, with no additional commentary or information outside of the JSON response and with no linebreaks or additional formatting outisde of the JSON format. Please return ONLY unformatted JSON data. Thank you!'
 
 
   categories:

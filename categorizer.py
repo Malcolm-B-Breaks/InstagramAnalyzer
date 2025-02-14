@@ -1,15 +1,18 @@
+import json
+import yaml
+import regex as re
 from jsonschema import validate
-from categorizer_schema import categorizer_schema
+from schemas.categorizer_schema import categorizer_schema
 
-
-def categorizer():
-    output = "Put AI Output here"
-    validate(instance=output, schema=categorizer_schema)
-    """
-    First, use jsonschema to validate ChatGPT's output
-    If it fails, then have the original ai_analyzer function rerun
-    perhaps with an additional prompt letting it know that it failed
-    to properly produce the desired schema, and to not be sorry,
-    but be careful.
-    """
-    pass
+def categorizer(data, lang):
+    # output_data = json.load(data)
+    # re.sub(r'\"', '"', data)
+    # re.match(r'^\s*"([^"]*)"\s*$', data)
+    print(type(data))
+    validate(instance=data, schema=categorizer_schema)
+    # try:
+    #     print(data)
+    #     validate(instance=data, schema=categorizer_schema)
+    #     print('Validation checks out!')
+    # except:
+    #     print("Validation failed.")
