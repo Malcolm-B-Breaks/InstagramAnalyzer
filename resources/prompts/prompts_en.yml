@@ -1,7 +1,18 @@
 en:
-  system_prompt: "You are a data analyst specializing in social media. You will be tasked with analyzing posts from social media and categorizing these posts based on their content."
+  system_prompts:
+    analyzer_prompt: 'You are a data analyst specializing in social media. You will be tasked with analyzing posts from social media and categorizing these posts based on their content.'
+    translator_prompt_1: 'You are a master translator fluent in all languages and well learned in all cultures of the world.'
 
-  user_prompt: 'Please analyze and present a summary of each of the following social media posts saved as JSON data, and classify each of them into one of these categories ("looking_for_members", "job recruitment", "events", "for sale/ free", "store opening", "new menu product", "seeking advice", "please share"): '
+  user_prompts:
+    analyzer_prompt: 'Please analyze and present a summary of each of the following social media posts saved as JSON data, and classify each of them into one of these categories ("looking_for_members", "job recruitment", "events", "for sale/ free", "store opening", "new menu product", "seeking advice", "please share"): '
+    translator_prompt_1: 'Translate the following social media XML-formatted post form according to these rules:
+      1. If the content is in Japanese, translate it into both English and Vietnamese.
+      2. If the content is in English, translate it into both Japanese and Vietnamese.
+      3. If the content is in Vietnamese, translate it into both Japanese and English.
+      4. Output only the translations (do not include the original text).
+      5. Maintain the original formatting and line breaks as closely as possible.
+      6. Clearly separate the English, Vietnamese, and Japanese translations into distinct sections.
+      Here is the content to be translated: '
 
   response_format:
     format:
